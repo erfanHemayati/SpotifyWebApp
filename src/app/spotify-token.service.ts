@@ -23,7 +23,8 @@ export class SpotifyTokenService implements OnDestroy {
       let auth = btoa(`${this.clientID}:${this.clientSecret}`);
       const authBody = new HttpParams().set('grant_type', 'client_credentials');
 
-      this.tokenSub = this.http.post<any>("https://accounts.spotify.com/api/token", authBody.toString(), { headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': `Basic ${auth}` } }).subscribe(token => {
+      this.tokenSub = this.http.post<any>("https://accounts.spotify.com/api/token", authBody.toString(), { headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Authorization': `Basic ${auth}` } })
+      .subscribe(token => {
         this.accessToken = token.access_token;
         this.accessTokenExpires = new Date();
         this.accessTokenExpires.setSeconds(this.accessTokenExpires.getSeconds() + token.expires_in);

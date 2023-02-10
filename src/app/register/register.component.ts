@@ -30,12 +30,9 @@ export class RegisterComponent implements OnInit {
         this.loading = false;
       },
         err => {
-
           this.success = false;
-          this.warning = err.error.message;// no idea about this
+          this.warning = err.error.message;
           this.loading = false;
-
-
         }
       );
     }
